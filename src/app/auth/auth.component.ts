@@ -8,10 +8,10 @@ import { AuthService } from '../auth.service';
 })
 export class AuthComponent {
   constructor(private authService: AuthService) {}
+  username: string = '';
+  password: string = '';
 
   login() {
-    // В реальном приложении здесь может быть отправка данных на сервер для проверки авторизации
-    // В данном случае мы просто вызываем метод login() из AuthService
-    this.authService.login();
+    this.authService.login(this.username, this.password );
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -6,12 +7,15 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private isAuthenticated = false;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
-  login() {
-    // В реальном приложении здесь может быть логика для отправки запроса на сервер для авторизации
-    // В данном случае мы просто имитируем успешную авторизацию
-    this.isAuthenticated = true;
+  login(username: string, password: string) {
+    if (username === 'admin' && password === '123') {
+      this.isAuthenticated = true;
+      this.router.navigate(['/post-list']);
+    } else {
+      alert('Invalid credentials. Please try again.');
+    }
   }
 
   logout() {
